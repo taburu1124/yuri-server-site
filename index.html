@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>百合協定！</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        "Noto Sans JP",
+        "Yu Gothic",
+        sans-serif;
+      color: #403747;
+      background: #fcfaff;
+      line-height: 1.7;
+    }
+
+    /* ====================
+       ヘッダー
+    ==================== */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee5f2;
+    }
+
+    .nav {
+      max-width: 1100px;
+      height: 70px;
+      margin: auto;
+      padding: 0 25px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      font-size: 20px;
+      font-weight: bold;
+      color: #70487e;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: linear-gradient(135deg, #d7b1e3, #9b6bb0);
+      color: white;
+      font-size: 18px;
+    }
+
+    nav {
+      display: flex;
+      gap: 25px;
+    }
+
+    nav a {
+      color: #62596a;
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    nav a:hover {
+      color: #9b6bb0;
+    }
+
+    /* ====================
+       ヒーロー
+    ==================== */
+
+    .hero {
+      max-width: 1100px;
+      margin: 50px auto 30px;
+      padding: 80px 60px;
+
+      border-radius: 30px;
+
+      background:
+        radial-gradient(circle at 85% 20%, #ead7f1 0 70px, transparent 71px),
+        radial-gradient(circle at 90% 80%, #f4dfe9 0 100px, transparent 101px),
+        linear-gradient(135deg, #f5eaf8, #fff4f8);
+
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 7vw, 72px);
+      line-height: 1.15;
+      color: #684374;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      color: #6d6472;
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+
+    .join-button {
+      display: inline-block;
+
+      padding: 13px 27px;
+      border-radius: 30px;
+
+      background: #9b6bb0;
+      color: white;
+
+      text-decoration: none;
+      font-weight: bold;
+
+      box-shadow: 0 8px 20px rgba(155, 107, 176, 0.25);
+      transition: 0.25s;
+    }
+
+    .join-button:hover {
+      transform: translateY(-3px);
+      background: #875b9b;
+    }
+
+    /* ====================
+       セクション
+    ==================== */
+
+    section {
+      max-width: 1100px;
+      margin: 80px auto;
+      padding: 0 25px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+      font-size: 30px;
+      color: #493c50;
+      margin-bottom: 8px;
+    }
+
+    .section-title p {
+      color: #8a808d;
+      font-size: 14px;
+    }
+
+    /* ====================
+       カード
+    ==================== */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+
+      border: 1px solid #eee5f2;
+
+      box-shadow: 0 8px 30px rgba(100, 70, 110, 0.06);
+
+      transition: 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(100, 70, 110, 0.10);
+    }
+
+    .card-icon {
+      font-size: 30px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      color: #684374;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: #756c78;
+      font-size: 14px;
+    }
+
+    /* ====================
+       サーバー情報
+    ==================== */
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .stat {
+      text-align: center;
+      padding: 25px;
+
+      background: #f5eaf8;
+      border-radius: 18px;
+    }
+
+    .stat-number {
+      font-size: 30px;
+      font-weight: bold;
+      color: #765082;
+    }
+
+    .stat-name {
+      font-size: 12px;
+      color: #766b7b;
+      letter-spacing: 1px;
+    }
+
+    /* ====================
+       参加セクション
+    ==================== */
+
+    .join-section {
+      text-align: center;
+      padding: 60px 30px;
+
+      background: linear-gradient(
+        135deg,
+        #f4e8f8,
+        #fff0f5
+      );
+
+      border-radius: 30px;
+    }
+
+    .join-section h2 {
+      font-size: 30px;
+      color: #684374;
+      margin-bottom: 12px;
+    }
+
+    .join-section p {
+      color: #716875;
+      margin-bottom: 25px;
+    }
+
+    /* ====================
+       フッター
+    ==================== */
+
+    footer {
+      margin-top: 100px;
+      padding: 35px 20px;
+
+      text-align: center;
+
+      background: #eee1f2;
+      color: #756a79;
+
+      font-size: 13px;
+    }
+
+    /* ====================
+       スマホ対応
+    ==================== */
+
+    @media (max-width: 700px) {
+
+      .nav {
+        height: auto;
+        padding: 15px 20px;
+
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      nav {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      nav a {
+        font-size: 12px;
+      }
+
+      .hero {
+        margin: 25px 15px;
+        padding: 55px 25px;
+        border-radius: 24px;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      section {
+        margin: 60px auto;
+      }
+
+      .cards,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title h2 {
+        font-size: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ヘッダー -->
+  <header>
+    <div class="nav">
+
+      <a href="#" class="logo">
+        <span class="logo-icon">✿</span>
+        百合協定！
+      </a>
+
+      <nav>
+        <a href="#about">このサーバーについて</a>
+        <a href="#info">サーバー情報</a>
+        <a href="#join">参加する</a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- メインビジュアル -->
+  <main>
+
+    <div class="hero">
+
+      <h1>
+        百合が好きな人、<br>
+        集まろう。
+      </h1>
+
+      <p>
+        百合好きが気軽に交流できるDiscordコミュニティ。<br>
+        好きな作品について語ったり、ゆっくり雑談したり。
+      </p>
+
+      <!-- ↓↓↓ Discord招待リンクを後で変更 ↓↓↓ -->
+      <a
+        href="ここにDiscord招待リンク"
+        class="join-button"
+        target="_blank">
+        Discordに参加する
+      </a>
+
+    </div>
+
+
+    <!-- サーバーについて -->
+    <section id="about">
+
+      <div class="section-title">
+        <h2>このサーバーについて</h2>
+        <p>百合が好きなら、気軽にどうぞ。</p>
+      </div>
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="card-icon">🌸</div>
+          <h3>百合好き歓迎</h3>
+          <p>
+            百合作品が好きな人たちが集まって、
+            好きな作品について語れる場所です。
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">💬</div>
+          <h3>ゆるく交流</h3>
+          <p>
+            アニメや漫画の話から日常の雑談まで、
+            自分のペースで楽しめます。
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🌐</div>
+          <h3>海外の人も歓迎</h3>
+          <p>
+            日本語だけでなく、海外の人も
+            参加しやすいコミュニティを目指します。
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- サーバー情報 -->
+    <section id="info">
+
+      <div class="section-title">
+        <h2>サーバー情報</h2>
+        <p>百合協定！の現在の情報</p>
+      </div>
+
+      <div class="stats">
+
+        <div class="stat">
+          <div class="stat-number">30+</div>
+          <div class="stat-name">MEMBERS</div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-number">20+</div>
+          <div class="stat-name">CHANNELS</div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-number">JP / EN</div>
+          <div class="stat-name">LANGUAGE</div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- 参加 -->
+    <section id="join">
+
+      <div class="join-section">
+
+        <h2>百合協定！に参加しよう</h2>
+
+        <p>
+          百合が好きなら、ぜひ遊びに来てください。
+        </p>
+
+        <a
+          href="ここにDiscord招待リンク"
+          class="join-button"
+          target="_blank">
+          Discordに参加する
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- フッター -->
+  <footer>
+    百合協定！　|　Discord Community
+  </footer>
+
+</body>
+</html>
